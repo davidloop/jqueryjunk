@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" id="top">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+<title>Jquery Forever</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" herf="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+<link rel="stylesheet" type="text/css" href="css/tailspin-all.min.css">
+
+<style>
+    body {
+		font-family: 'Fira Sans', Arial, sans-serif;
+		position: relative;
+	}
+
+    main {
+		padding: 60px;
+	}
+
+    @media (max-width: 1199px) {
+
+        main {
+            padding: 20px 0 0 0;
+        }
+    }
+
+    :any-link {
+        text-decoration: underline;
+    }
+
+    :any-link:hover {
+        text-decoration: none;
+    }
+
+    ul {
+		margin: -5px 0;
+	}
+
+	ul li {
+		margin: 5px 0;
+	}
+
+    header, footer {
+		background: #f7f7f7;
+		border-color: gainsboro;
+	}
+
+    header {
+		width: 100%;
+		padding: 18px 0;
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 2;
+	}
+
+	header h1 {
+		font-size: 30px;
+		font-weight: 600;
+	}
+
+    p:last-of-type {
+		margin: 0;
+	}
+
+    p:last-of-type + .highlight {
+        margin: 20px 0 30px 0;
+    }
+
+    .highlight {
+        max-height: 250px;
+		margin: 0 0 30px 0;
+		padding: 1.5rem;
+		background: ivory;
+		border: 1px solid gainsboro;
+		border-radius: 3px;
+		font-size: 14px;
+		overflow-x: auto;
+	}
+
+    pre {
+		margin: 0;
+        white-space: pre-wrap;
+	}
+
+    footer {
+		padding: 60px 0;
+		border-top-width: 1px;
+		border-top-style: solid;
+	}
+
+    .menu-trigger {
+		height: 30px;
+		width: 30px;
+		border: 1px solid gainsboro;
+		border-radius: 3px;
+		display: block;
+		position: fixed;
+		top: 20px;
+		left: 20px;
+		z-index: 3;
+		transition: left 0.15s ease-out;
+	}
+
+	.menu-trigger span {
+		height: 2px;
+		width: calc(100% - 12px);
+		background: black;
+		display: block;
+		position: absolute;
+		left: 6px;
+		transition: all 0.2s ease-out;
+	}
+
+	.menu-trigger span:nth-of-type(1) {
+		top: 50%;
+		transform: translateY(calc(-50% - 6px)) rotate(0deg);
+	}
+
+	.menu-trigger span:nth-of-type(2) {
+		opacity: 1;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.menu-trigger span:nth-of-type(3) {
+		top: 50%;
+		transform: translateY(calc(-50% + 6px)) rotate(0deg);
+	}
+
+	.menu-trigger.open {
+		left: 370px;
+	}
+
+	.menu-trigger.open span:nth-of-type(1) {
+		top: 50%;
+		transform: translateY(calc(-50% - 0px)) rotate(135deg);
+	}
+
+	.menu-trigger.open span:nth-of-type(2) {
+		opacity: 0;
+	}
+
+	.menu-trigger.open span:nth-of-type(3) {
+		top: 50%;
+		transform: translateY(calc(-50% + 0px)) rotate(225deg);
+	}
+
+	.menu-target {
+		height: 100vh;
+		width: 350px;
+		padding: 45px 0 0 0;
+		background: slategrey;
+		position: fixed;
+		top: 0;
+		left: -350px;
+		z-index: 3;
+		transition: left 0.15s ease-out;
+	}
+
+	.menu-target li:first-of-type {
+		border-top: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
+	.menu-target li {
+		margin: 0;
+		font-size: 14px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
+	.menu-target li a {
+		padding: 12px 20px;
+		color: white;
+		text-decoration: none;
+		display: block;
+		transition: all 0.2s ease-out;
+	}
+
+	.menu-target li a:hover {
+		background: rgba(0, 0, 0, 0.2);
+	}
+
+	.menu-target.open {
+		left: 0;
+	}
+
+    .back-to-top {
+		height: 30px;
+		width: 30px;
+		background: #f7f7f7;
+		border: 1px solid gainsboro;
+		border-radius: 3px;
+		opacity: 0;
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		transition: opacity 0.15s ease-out;
+	}
+
+	.back-to-top img {
+		height: auto;
+		width: 50%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	.back-to-top.visible {
+		opacity: 1;
+	}
+</style>
+
+</head>
+<body>
+<header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="padding-left-right-60">
+                    <h1>Jquery Forever</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="padding-bottom-45"></div>
+    
+    <!-- simple toggle -->
+    <section class="padding-top-bottom-30" id="simple-toggle">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-7">
+					<h4 class="margin-bottom-25" style="color: crimson;">Simple Toggle</h4>
+                    <hr class="margin-top-bottom-30">
+				</div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    <p class="margin-top-10"><strong>Example</strong></p>
+
+                    <div class="simple-toggle-container margin-top-20">
+                        <button type="button" class="simple-toggle-trigger" aria-expanded="false">Simple Toggle Trigger</button>
+                        <div class="simple-toggle-target padding-30 border">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                            <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        </div>
+                    </div>
+
+                    <style>
+                        button.simple-toggle-trigger {
+                            width: 100%;
+                            margin: 0 0 -1px 0;
+                            padding: 10px 15px;
+                            background: white;
+                            border: 1px solid #dcdcdc;
+                            text-align: left;
+                            position: relative;
+                            cursor: pointer;
+                        }
+
+                        button.simple-toggle-trigger::before,
+                        button.simple-toggle-trigger::after {
+                            content: '';
+                            height: 2px;
+                            width: 12px;
+                            background: #999999;
+                            position: absolute;
+                            top: 22px;
+                        }
+
+                        button.simple-toggle-trigger::before {
+                            right: 15px;
+                            transform: rotate(-45deg);
+                        }
+
+                        button.simple-toggle-trigger::after {
+                            right: 22px;
+                            transform: rotate(45deg);
+                        }
+
+                        button.simple-toggle-trigger.open::before {
+                            transform: rotate(-135deg);
+                        }
+
+                        button.simple-toggle-trigger.open::after {
+                            transform: rotate(135deg);
+                        }
+
+                        .simple-toggle-target {
+                            display: none;
+                        }
+                    </style>
+                </div>
+                <div class="col-7">
+                    <p class="margin-top-10"><strong>Structure</strong></p>
+                    <div class="highlight">
+<pre>&lt;div class="simple-toggle-container"&gt;
+    &lt;button type="button" class="simple-toggle-trigger" aria-expanded="false"&gt;
+        Simple Toggle Trigger
+    &lt;/button&gt;
+    &lt;div class="simple-toggle-target"&gt;
+        Content goes here ...
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+                    </div>
+
+                    <p class="margin-top-10"><strong>CSS</strong></p>
+                    <div class="highlight">
+<pre>
+button.simple-toggle-trigger {
+    width: 100%;
+    margin: 0 0 -1px 0;
+    padding: 10px 15px;
+    background: white;
+    border: 1px solid #dcdcdc;
+    text-align: left;
+    position: relative;
+    cursor: pointer;
+}
+
+button.simple-toggle-trigger::before,
+button.simple-toggle-trigger::after {
+    content: '';
+    height: 2px;
+    width: 12px;
+    background: #999999;
+    position: absolute;
+    top: 22px;
+}
+
+button.simple-toggle-trigger::before {
+    right: 15px;
+    transform: rotate(-45deg);
+}
+
+button.simple-toggle-trigger::after {
+    right: 22px;
+    transform: rotate(45deg);
+}
+
+button.simple-toggle-trigger.open::before {
+    transform: rotate(-135deg);
+}
+
+button.simple-toggle-trigger.open::after {
+    transform: rotate(135deg);
+}
+
+.simple-toggle-target {
+    display: none;
+}
+</pre>
+                    </div>
+                    <p class="margin-top-10"><strong>Jquery</strong></p>
+                    <div class="highlight">
+<pre>
+$(".simple-toggle-trigger").on('click', (e) => {
+    e.preventDefault();
+
+    let target = $(e.currentTarget).parent().find(".simple-toggle-target");
+
+    if ( $(e.currentTarget).hasClass('open') ) {
+        $(e.currentTarget).removeClass('open').attr('aria-expanded', 'false');
+        $(target).slideUp('fast');
+    } else {
+        $(e.currentTarget).addClass('open').attr('aria-expanded', 'true');
+        $(target).slideDown('fast');
+    }
+});
+</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="padding-bottom-60"></div>
+    <div class="padding-bottom-60"></div>
+    <div class="padding-bottom-60"></div>
+
+</main>
+<footer>
+    <div class="container-fluid">
+		<div class="row">
+			<div class="col-xl-6">
+				<div class="padding-left-right-60">
+					<p>Version 1.0.0</p>
+				</div>
+			</div>
+			<div class="col-xl-6">
+				<div class="padding-left-right-60 text-right">
+					<p>Copyright &copy; <span class="year"></span> Jquery Forever. <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<a class="menu-trigger" href="#" title="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+</a>
+<ul class="list-unstyled menu-target">
+    <li><a href="#simple-toggle">Simple Toggle</a></li>
+</ul>
+
+<a class="back-to-top" href="#" title="Back to top">
+	<img src="images/icon-angle-up-gray.svg" alt="">
+</a>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/simple-toggle.js"></script>
+</body>
+</html>
