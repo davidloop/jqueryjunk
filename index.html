@@ -238,6 +238,22 @@
 </header>
 <main>
     <div class="padding-bottom-45"></div>
+
+	<!-- intro -->
+	<section class="padding-top-bottom-30">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-7">
+					<p>Small, industrious, user centric interactions created with Jquery.</p>
+					<p><strong>Protip:</strong> Most interactions include a parent container, which is used for scoping, or in other words - a reference element to match against. This keeps the possiblity of interference from multiple interactions within the same document to a minimum.</p>
+					<p><strong>Protip:</strong> Learn why and how to use <a href="https://api.jquery.com/ready/" target="_blank">document ready</a> states. All examples in this document use the <code>(function($) { })(jQuery);</code> function syntax to execute after the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction" target="_blank">DOM</a> is ready.</p>
+					<p><strong>Protip:</strong> No images are being used for icons in any interaction. Icons are created using CSS.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="padding-bottom-60"></div>
     
     <!-- simple toggle -->
     <section class="padding-top-bottom-30" id="simple-toggle">
@@ -245,7 +261,7 @@
             <div class="row">
                 <div class="col-7">
 					<h4 class="margin-bottom-25" style="color: crimson;">Simple Toggle</h4>
-					<p></p>
+					<p><strong>Protip:</strong> Do not directly use margin or padding on the targeted element that gets animated, it sometimes causes unsightly animations. Instead, use a nested element if any content positioning is needed.</p>
                     <hr class="margin-top-bottom-30">
 				</div>
             </div>
@@ -392,6 +408,169 @@ $(".simple-toggle-trigger").on('click', (e) => {
     </section>
 
     <div class="padding-bottom-60"></div>
+
+	<!-- simple toggle to top -->
+	<section class="padding-top-bottom-30" id="simple-toggle-to-top">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-7">
+					<h4 class="margin-bottom-25" style="color: crimson;">Simple Toggle &amp; Animate To Top</h4>
+					<p><strong>Protip:</strong> Do not directly use margin or padding on the targeted element that gets animated, it sometimes causes unsightly animations. Instead, use a nested element if any content positioning is needed.</p>
+					<p><strong>Protip:</strong> The <code>HTML</code> element has an id of 'top'. This serves as the anchor for which the targeted element will animate to.</p>
+                    <hr class="margin-top-bottom-30">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-5">
+					<p class="margin-top-10"><strong>Example</strong></p>
+
+					<div class="simple-toggle-to-top-container margin-top-20">
+                        <button type="button" class="simple-toggle-to-top-trigger" aria-expanded="false">Simple Toggle To Top Trigger</button>
+                        <div class="simple-toggle-to-top-target border">
+							<div class="padding-30">
+								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							</div>
+                        </div>
+                    </div>
+					<style>
+                        button.simple-toggle-to-top-trigger {
+                            width: 100%;
+                            margin: 0 0 -1px 0;
+                            padding: 10px 15px;
+                            background: white;
+                            border: 1px solid #dcdcdc;
+                            text-align: left;
+                            position: relative;
+                            cursor: pointer;
+                        }
+
+                        button.simple-toggle-to-top-trigger::before,
+                        button.simple-toggle-to-top-trigger::after {
+                            content: '';
+                            height: 2px;
+                            width: 12px;
+                            background: #999999;
+                            position: absolute;
+                            top: 22px;
+                        }
+
+                        button.simple-toggle-to-top-trigger::before {
+                            right: 15px;
+                            transform: rotate(-45deg);
+                        }
+
+                        button.simple-toggle-to-top-trigger::after {
+                            right: 22px;
+                            transform: rotate(45deg);
+                        }
+
+                        button.simple-toggle-to-top-trigger.open::before {
+                            transform: rotate(-135deg);
+                        }
+
+                        button.simple-toggle-to-top-trigger.open::after {
+                            transform: rotate(135deg);
+                        }
+
+                        .simple-toggle-to-top-target {
+                            display: none;
+                        }
+                    </style>
+				</div>
+				<div class="col-7">
+					<p class="margin-top-10"><strong>Structure</strong></p>
+					<div class="highlight">
+<pre>&lt;html lang="en" id="<span style="color: crimson;">top</span>"&gt;
+
+... code ...
+
+    &lt;div class="simple-toggle-to-top-container"&gt;
+        &lt;button type="button" class="simple-toggle-to-top-trigger" aria-expanded="false"&gt;
+            Simple Toggle Top Top Trigger
+        &lt;/button&gt;
+        &lt;div class="simple-toggle-to-top-target"&gt;
+            Content goes here ...
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+... code ...
+
+&lt;/html&gt;</pre>
+					</div>
+					<p class="margin-top-10"><strong>CSS</strong></p>
+					<div class="highlight">
+<pre>
+button.simple-toggle-to-top-trigger {
+    width: 100%;
+    margin: 0 0 -1px 0;
+    padding: 10px 15px;
+    background: white;
+    border: 1px solid #dcdcdc;
+    text-align: left;
+    position: relative;
+    cursor: pointer;
+}
+
+button.simple-toggle-to-top-trigger::before,
+button.simple-toggle-to-top-trigger::after {
+    content: '';
+    height: 2px;
+    width: 12px;
+    background: #999999;
+    position: absolute;
+    top: 22px;
+}
+
+button.simple-toggle-tto-top-rigger::before {
+    right: 15px;
+    transform: rotate(-45deg);
+}
+
+button.simple-toggle-to-top-trigger::after {
+    right: 22px;
+    transform: rotate(45deg);
+}
+
+button.simple-toggle-to-top-trigger.open::before {
+    transform: rotate(-135deg);
+}
+
+button.simple-toggle-to-top-trigger.open::after {
+    transform: rotate(135deg);
+}
+
+.simple-toggle-to-top-target {
+    display: none;
+}
+</pre>
+					</div>
+					<p class="margin-top-10"><strong>Jquery</strong></p>
+					<div class="highlight">
+<pre>
+$(".simple-toggle-to-top-trigger").on('click', (e) => {
+    e.preventDefault();
+
+    let target = $(e.currentTarget).parent().find(".simple-toggle-to-top-target");
+
+    if ( $(e.currentTarget).hasClass('open') ) {
+        $(e.currentTarget).removeClass('open').attr('aria-expanded', 'false');
+        $(target).slideUp('fast');
+    } else {
+        $(e.currentTarget).addClass('open').attr('aria-expanded', 'true');
+        $(target).slideDown('fast');
+
+        $("body, html").animate({
+            scrollTop: $(e.currentTarget).offset().top
+        }, 200);
+    }
+});
+</pre>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
     <div class="padding-bottom-60"></div>
     <div class="padding-bottom-60"></div>
 
@@ -420,6 +599,7 @@ $(".simple-toggle-trigger").on('click', (e) => {
 </a>
 <ul class="list-unstyled menu-target">
     <li><a href="#simple-toggle">Simple Toggle</a></li>
+	<li><a href="#simple-toggle-to-top">Simple Toggle &amp; Animate To Top</a></li>
 </ul>
 
 <a class="back-to-top" href="#" title="Back to top">
@@ -429,5 +609,6 @@ $(".simple-toggle-trigger").on('click', (e) => {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript" src="js/simple-toggle.js"></script>
+<script type="text/javascript" src="js/simple-toggle-animate-to-top.js"></script>
 </body>
 </html>
