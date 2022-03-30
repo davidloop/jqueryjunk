@@ -34,6 +34,31 @@
         $(".menu-target").removeClass('open');
     });
 
+    // Expand code
+    $(".highlight-overflow").each( (e, i) => {
+        if ( $(i).outerHeight() <= 207 ) {
+            $(i).css({
+                'padding-top' : '20px',
+            })
+            $(i).parent().find("button").hide();
+        }
+    });
+
+    $(".highlight button").on('click', (e) => {
+        e.preventDefault();
+        if ( $(e.currentTarget).hasClass('open') ) {
+            $(e.currentTarget).removeClass('open').text('expand');
+            $(e.currentTarget).next().css({
+                'max-height' : '225px',
+            });
+        } else {
+            $(e.currentTarget).addClass('open').text('collapse');
+            $(e.currentTarget).next().css({
+                'max-height' : '2250px',
+            });
+        }
+    });
+
     // Back to top
     $(window).on('scroll', () => {
         const scrolled = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
