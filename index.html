@@ -782,6 +782,229 @@ $(".simple-accordion-trigger").on('click', (e) => {
     </section>
 
     <div class="padding-bottom-60"></div>
+
+    <!-- simple accordion to top -->
+    <section class="padding-top-bottom-30" id="simple-accordion-to-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-7">
+                    <h4 class="margin-bottom-25" style="color: crimson;">Simple Accordion & Animate To Top</h4>
+                    <p><strong>Protip:</strong> Do not directly use margin or padding on the targeted element that gets animated, it sometimes causes unsightly animations. Instead, use a nested element if any content positioning is needed.</p>
+                    <hr class="margin-top-bottom-30">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    <p class="margin-top-10"><strong>Example</strong></p>
+
+                    <div class="simple-accordion-to-top-container margin-top-20">
+                        <div class="simple-accordion-to-top-item">
+                            <button type="button" class="simple-accordion-to-top-trigger open" aria-expanded="true">Trigger 1</button>
+                            <div class="simple-accordion-to-top-target border" style="display: block;">
+                                <div class="padding-30">
+                                    <p><strong>Target 1</strong></p>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="simple-accordion-to-top-item margin-top-bottom-10">
+                            <button type="button" class="simple-accordion-to-top-trigger" aria-expanded="false">Trigger 2</button>
+                            <div class="simple-accordion-to-top-target border">
+                                <div class="padding-30">
+                                    <p><strong>Target 2</strong></p>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="simple-accordion-to-top-item">
+                            <button type="button" class="simple-accordion-to-top-trigger" aria-expanded="false">Trigger 3</button>
+                            <div class="simple-accordion-to-top-target border">
+                                <div class="padding-30">
+                                    <p><strong>Target 3</strong></p>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <style>
+                        button.simple-accordion-to-top-trigger {
+                            width: 100%;
+                            margin: 0 0 -1px 0;
+                            padding: 10px 15px;
+                            background: white;
+                            border: 1px solid #dcdcdc;
+                            text-align: left;
+                            position: relative;
+                            cursor: pointer;
+                        }
+
+                        button.simple-accordion-to-top-trigger::before,
+                        button.simple-accordion-to-top-trigger::after {
+                            content: '';
+                            height: 2px;
+                            width: 12px;
+                            background: #999999;
+                            position: absolute;
+                            top: 22px;
+                        }
+
+                        button.simple-accordion-to-top-trigger::before {
+                            right: 15px;
+                            transform: rotate(-45deg);
+                        }
+
+                        button.simple-accordion-to-top-trigger::after {
+                            right: 22px;
+                            transform: rotate(45deg);
+                        }
+
+                        button.simple-accordion-to-top-trigger.open::before {
+                            transform: rotate(-135deg);
+                        }
+
+                        button.simple-accordion-to-top-trigger.open::after {
+                            transform: rotate(135deg);
+                        }
+
+                        .simple-accordion-to-top-target {
+                            display: none;
+                        }
+                    </style>
+
+                </div>
+                <div class="col-7">
+                    <p class="margin-top-10"><strong>Structure</strong></p>
+                    <div class="highlight">
+                        <button type="button">expand</button>
+                        <div class="highlight-overflow">
+<pre>&lt;div class="simple-accordion-to-top-container"&gt;
+    &lt;div class="simple-accordion-to-top-item"&gt;
+        &lt;button type="button" class="simple-accordion-to-top-trigger open" aria-expanded="true"&gt;
+            Simple Accordion Trigger
+        &lt;/button&gt;
+        &lt;div class="simple-accordion-to-top-target" style="display: block;"&gt;
+            Content goes here ...
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="simple-accordion-to-top-item"&gt;
+        &lt;button type="button" class="simple-accordion-to-top-trigger" aria-expanded="false"&gt;
+            Simple Accordion Trigger
+        &lt;/button&gt;
+        &lt;div class="simple-accordion-to-top-target"&gt;
+            Content goes here ...
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="simple-accordion-to-top-item"&gt;
+        &lt;button type="button" class="simple-accordion-to-top-trigger" aria-expanded="false"&gt;
+            Simple Accordion Trigger
+        &lt;/button&gt;
+        &lt;div class="simple-accordion-to-top-target"&gt;
+            Content goes here ...
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+                        </div>
+                    </div>
+                    <p class="margin-top-10"><strong>CSS</strong></p>
+                    <div class="highlight">
+                        <button type="button">expand</button>
+                        <div class="highlight-overflow">
+<pre>
+    .simple-accordion-to-top-item {
+        margin-bottom: 30px;
+    }
+    
+    .simple-accordion-to-top-item:last-of-type {
+        margin-bottom: 0;
+    }
+    
+    button.simple-accordion-to-top-trigger {
+        width: 100%;
+        margin: 0 0 -1px 0;
+        padding: 10px 15px;
+        background: white;
+        border: 1px solid #dcdcdc;
+        text-align: left;
+        position: relative;
+        cursor: pointer;
+    }
+    
+    button.simple-accordion-to-top-trigger::before,
+    button.simple-accordion-to-top-trigger::after {
+        content: '';
+        height: 2px;
+        width: 12px;
+        background: #999999;
+        position: absolute;
+        top: 22px;
+    }
+    
+    button.simple-accordion-to-top-trigger::before {
+        right: 15px;
+        transform: rotate(-45deg);
+    }
+    
+    button.simple-accordion-to-top-trigger::after {
+        right: 22px;
+        transform: rotate(45deg);
+    }
+    
+    button.simple-accordion-to-top-trigger.open::before {
+        transform: rotate(-135deg);
+    }
+    
+    button.simple-accordion-to-top-trigger.open::after {
+        transform: rotate(135deg);
+    }
+    
+    .simple-accordion-to-top-target {
+        display: none;
+    }
+    </pre>
+                        </div>
+                    </div>
+                    <p class="margin-top-10"><strong>Jquery</strong></p>
+                    <div class="highlight">
+                        <button type="button">expand</button>
+                        <div class="highlight-overflow">
+<pre>
+$(".simple-accordion-to-top-trigger").on('click', (e) => {
+    e.preventDefault();
+
+    let target = $(e.currentTarget).parent().find(".simple-accordion-to-top-target");
+
+    if ( $(e.currentTarget).hasClass('open') ) {
+        $(e.currentTarget).removeClass('open').attr('aria-expanded', 'false');
+        $(target).slideUp('fast');
+    } else {
+        $(".simple-accordion-to-top-trigger").removeClass('open').attr('aria-expanded', 'false');
+        $(".simple-accordion-to-top-target").slideUp('fast');
+        $(e.currentTarget).addClass('open').attr('aria-expanded', 'true');
+        $(target).slideDown('fast');
+
+        setTimeout( ()=> {
+            $("body, html").animate({
+                scrollTop: $(e.currentTarget).offset().top - 105
+            }, 200);
+        }, 200);
+    }
+});
+</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="padding-bottom-60"></div>
 </main>
 <footer>
     <div class="container-fluid">
@@ -810,6 +1033,7 @@ $(".simple-accordion-trigger").on('click', (e) => {
 	<li><a href="#simple-toggle-to-top">Simple Toggle &amp; Animate To Top</a></li>
     <li><a href="#simple-toggle-click-to-close">Simple Toggle &amp; Click To Close</a></li>
     <li><a href="#simple-accordion">Simple Accordion</a></li>
+    <li><a href="#simple-accordion-to-top">Simple Accordion &amp; Animate To Top</a></li>
 </ul>
 
 <a class="back-to-top" href="#" title="Back to top">
@@ -822,5 +1046,6 @@ $(".simple-accordion-trigger").on('click', (e) => {
 <script type="text/javascript" src="js/simple-toggle-animate-to-top.js"></script>
 <script type="text/javascript" src="js/simple-toggle-click-to-close.js"></script>
 <script type="text/javascript" src="js/simple-accordion.js"></script>
+<script type="text/javascript" src="js/simple-accordion-animate-to-top.js"></script>
 </body>
 </html>
