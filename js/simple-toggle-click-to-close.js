@@ -1,26 +1,26 @@
 (function($) {
-    $(".simple-toggle-click-to-close-trigger").on('click keypress', function(e) {
+    $(".simple-toggle-click-to-close-trigger").on('click keypress', (e) => {
         if (e.type === 'keypress' && e.key !== 'Enter' && e.key !== ' ') {
             return;
         }
         
         e.preventDefault();
 
-        let target = $(e.currentTarget).parent().find(".simple-toggle-click-to-close-target");
-        let isOpen = $(e.currentTarget).hasClass('open');
+        let target = $(e.target).parent().find(".simple-toggle-click-to-close-target");
+        let isOpen = $(e.target).hasClass('open');
 
-        $(e.currentTarget).toggleClass('open', !isOpen).attr('aria-expanded', !isOpen);
+        $(e.target).toggleClass('open', !isOpen).attr('aria-expanded', !isOpen);
         $(target).slideToggle('fast');
     });
 
     $(".simple-toggle-click-to-close-trigger").on('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            $(e.currentTarget).trigger('click');
+            $(e.target).trigger('click');
         }
     });
 
-    $(document).on('click', function(e) {
+    $(document).on('click', (e) => {
         let trigger = $(".simple-toggle-click-to-close-trigger");
         let target = $(".simple-toggle-click-to-close-target");
 
