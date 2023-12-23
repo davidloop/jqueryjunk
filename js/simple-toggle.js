@@ -1,18 +1,18 @@
 (function($) {
-    $(".simple-toggle-trigger").on('click', function(e) {
+    $(".simple-toggle-trigger").on('click', (e) => {
         e.preventDefault();
 
-        let target = $(this).parent().find(".simple-toggle-target");
-        let isOpen = $(this).hasClass('open');
+        let target = $(e.target).parent().find(".simple-toggle-target");
+        let isOpen = $(e.target).hasClass('open');
 
-        $(this).toggleClass('open', !isOpen).attr('aria-expanded', !isOpen);
+        $(e.target).toggleClass('open', !isOpen).attr('aria-expanded', !isOpen);
         $(target).slideToggle('fast');
     });
 
-    $(".simple-toggle-trigger").on('keydown', function(e) {
+    $(".simple-toggle-trigger").on('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            $(this).trigger('click');
+            $(e.target).trigger('click');
         }
     });
 })(jQuery);
