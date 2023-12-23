@@ -1,5 +1,4 @@
 (function($) {
-
     $(".simple-toggle-click-to-close-trigger").on('click keypress', function(e) {
         if (e.type === 'keypress' && e.key !== 'Enter' && e.key !== ' ') {
             return;
@@ -35,5 +34,4 @@
             $(target).slideUp('fast');
         }
     });
-    
 })(jQuery);

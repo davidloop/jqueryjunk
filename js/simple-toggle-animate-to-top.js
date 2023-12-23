@@ -1,5 +1,4 @@
 (function($) {
-
     $(".simple-toggle-to-top-trigger").on('click', function(e) {
         e.preventDefault();
 
@@ -24,5 +23,4 @@
             $(this).trigger('click');
         }
     });
-
 })(jQuery);
