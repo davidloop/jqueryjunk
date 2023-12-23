@@ -14,4 +14,11 @@
         }
     });
 
+    $(".simple-toggle-trigger").on('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            $(e.currentTarget).trigger('click');
+        }
+    });
+
 })(jQuery);
