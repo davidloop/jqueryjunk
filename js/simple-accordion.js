@@ -1,19 +1,21 @@
 (function($) {
+    $(".simple-accordion-trigger").on('click keypress', (e) => {
+        if (e.type === 'keypress' && e.key !== 'Enter') {
+            return;
+        }
 
-    $(".simple-accordion-trigger").on('click', (e) => {
         e.preventDefault();
 
-        let target = $(e.currentTarget).parent().find(".simple-accordion-target");
+        const target = $(e.target).parent().find(".simple-accordion-target");
 
-        if ( $(e.currentTarget).hasClass('open') ) {
-            $(e.currentTarget).removeClass('open').attr('aria-expanded', 'false');
+        if ($(e.target).hasClass('open')) {
+            $(e.target).removeClass('open').attr('aria-expanded', 'false');
             $(target).slideUp('fast');
         } else {
             $(".simple-accordion-trigger").removeClass('open').attr('aria-expanded', 'false');
             $(".simple-accordion-target").slideUp('fast');
-            $(e.currentTarget).addClass('open').attr('aria-expanded', 'true');
+            $(e.target).addClass('open').attr('aria-expanded', 'true');
             $(target).slideDown('fast');
         }
     });
-
 })(jQuery);
