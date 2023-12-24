@@ -3,13 +3,8 @@
     // Open menu
     $(".menu-trigger").on('click', (e) => {
         e.preventDefault();
-        if ($(e.currentTarget).hasClass('open')) {
-            $(e.currentTarget).removeClass('open');
-            $(".menu-target").removeClass('open');
-        } else {
-            $(e.currentTarget).addClass('open');
-            $(".menu-target").addClass('open');
-        }
+        $(e.target).toggleClass('open');
+        $(".menu-target").toggleClass('open');
     });
 
     // Close menu clicking anywhere but the menu
