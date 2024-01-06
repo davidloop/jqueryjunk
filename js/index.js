@@ -1,59 +1,77 @@
 (function($) {
 
+    function toggleMenu() {
+        $(".menu-trigger").toggleClass('open');
+        $(".menu-target").toggleClass('open');
+    }
+
+    function isMenuClick(e) {
+        return (
+            $(".menu-target, .menu-target *").is(e.target) || $(".menu-trigger, .menu-trigger *").is(e.target)
+        );
+    }
+
+    function closeMenu() {
+        $(".menu-trigger").removeClass('open');
+        $(".menu-target").removeClass('open');
+    }
+
+
+    
     // Open menu
     $(".menu-trigger").on('click', (e) => {
         e.preventDefault();
-        $(e.target).toggleClass('open');
-        $(".menu-target").toggleClass('open');
+        toggleMenu();
     });
 
     // Close menu clicking anywhere but the menu
     $(document).on('click', (e) => {
-        if (
-            !$(".menu-target").is(e.target) &&
-            !$(".menu-target").find("*").is(e.target) &&
-            !$(".menu-trigger").is(e.target) &&
-            !$(".menu-trigger").find("*").is(e.target)
-        ) {
-            $(".menu-trigger").removeClass('open');
-            $(".menu-target").removeClass('open');
+        if (!isMenuClick(e)) {
+            closeMenu();
         }
     });
+
+
 
     // Animate to each section
     $(".menu-target a").on('click', (e) => {
         $("html, body").animate({
             scrollTop: $( $(e.currentTarget).attr("href") ).offset().top - 105
         }, 200);
-        $(".menu-trigger").removeClass('open');
-        $(".menu-target").removeClass('open');
+        closeMenu();
     });
 
+
+
     // Expand code
-    $(".highlight-overflow").each( (e, i) => {
-        if ( $(i).outerHeight() <= 207 ) {
-            $(i).css({
+    $(".highlight-overflow").each( (index, element) => {
+        const el = element;
+        const maxHeight = 207;
+
+        if ($(el).outerHeight() <= maxHeight) {
+            $(el).css({
                 'padding-top' : '20px',
             })
-            $(i).parent().find("button").hide();
+            $(el).parent().find("button").hide();
         }
     });
 
     $(".highlight button").on('click', (e) => {
         e.preventDefault();
-        if ( $(e.currentTarget).hasClass('open') ) {
-            $(e.currentTarget).removeClass('open').text('expand');
-            $(e.currentTarget).next().css({
-                'max-height' : '225px',
-            });
+        const button = $(e.currentTarget);
+        const content = button.next();
+
+        if (button.hasClass('open')) {
+            button.removeClass('open').text('expand');
+            content.css('max-height', '225px');
         } else {
-            $(e.currentTarget).addClass('open').text('collapse');
-            $(e.currentTarget).next().css({
-                'max-height' : '2250px',
-            });
+            button.addClass('open').text('collapse');
+            content.css('max-height', '2250px');
         }
     });
 
+
+    
     // Back to top
     $(window).on('scroll', () => {
         const scrolled = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
